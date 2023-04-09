@@ -53,6 +53,27 @@ export default class Character {
         break;
     }
   }
+
+  damage(points) {
+    if (this.health >= 0) {
+      this.health -= points * (1 - this.defence / 100);
+    }
+  }
+
+  levelUp() {
+    try {
+      if (this.health <= 0) {
+        throw new Error('Нельзя повысить уровень умершего');
+      }
+      this.level += 1;
+      this.attack *= 1.2;
+      this.defence *= 1.2;
+      this.health = 100;
+    } catch (err) {
+      // eslint-disable-next-line
+      console.log(err);
+    }
+  }
 }
 
 // eslint-disable-next-line
