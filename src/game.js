@@ -21,7 +21,9 @@ export default class Character {
   }
 
   damage(points) {
-    if (this.health >= 0) {
+    if (this.health < 0) {
+      throw new Error('Враг уже мертв');
+    } else {
       this.health -= points * (1 - this.defence / 100);
     }
   }
